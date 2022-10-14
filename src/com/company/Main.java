@@ -35,13 +35,6 @@ public class Main {
         Treadmill treadmill = new Treadmill(100);
         Wall wall = new Wall(50);
 
-        man.run(treadmill);
-        man.jump(wall);
-        cat.run(treadmill);
-        cat.jump(wall);
-        robot.run(treadmill);
-        robot.jump(wall);
-
         List<Participant> participants = new ArrayList<>();
         participants.add(man);
         participants.add(cat);
