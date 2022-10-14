@@ -1,4 +1,4 @@
-package Figures;
+package com.company.figures;
 
 public class Square implements Figure {
     private int a;

@@ -1,4 +1,4 @@
-package Figures;
+package com.company.figures;
 
 public class Round implements Figure {
     private int r;

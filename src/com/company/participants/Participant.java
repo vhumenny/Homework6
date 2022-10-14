@@ -1,22 +1,22 @@
-import obstacles.Obstacle;
+package com.company.participants;
 
-public class Man extends Participant {
+import com.company.obstacles.Obstacle;
+
+public class Participant {
     private int runLength;
     private int jumpHeight;
 
-    public Man(int runLength, int jumpHeight) {
+    public Participant(int runLength, int jumpHeight) {
         this.runLength = runLength;
         this.jumpHeight = jumpHeight;
     }
 
-    @Override
     public void run(Obstacle treadmill) {
-        System.out.println("Man runs");
+        System.out.println("run");
     }
 
-    @Override
     public void jump(Obstacle wall) {
-        System.out.println("Man jumps");
+        System.out.println("jump");
     }
 
     public int getRunLength() {

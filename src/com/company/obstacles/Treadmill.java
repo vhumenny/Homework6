@@ -1,4 +1,6 @@
-package obstacles;
+package com.company.obstacles;
+
+import com.company.participants.Participant;
 
 public class Treadmill extends Obstacle {
     private int length;
@@ -7,9 +9,9 @@ public class Treadmill extends Obstacle {
         this.length = length;
     }
 
+    @Override
     public boolean overcome(Participant participant) {
-
-        if (length>
+        return length <= participant.getRunLength();
 
     }
 
@@ -19,5 +21,10 @@ public class Treadmill extends Obstacle {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    @Override
+    public String toString() {
+        return "Treadmill";
     }
 }

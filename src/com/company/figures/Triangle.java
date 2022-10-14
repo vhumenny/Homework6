@@ -1,4 +1,4 @@
-package Figures;
+package com.company.figures;
 
 public class Triangle implements Figure {
     private int a;
