@@ -1,79 +1,66 @@
+import Figures.Figure;
+import Figures.Round;
+import Figures.Square;
+import Figures.Triangle;
+import obstacles.Obstacle;
+import obstacles.Treadmill;
+import obstacles.Wall;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+        Square square = new Square(2);
+        Round round = new Round(3);
+        Triangle triangle = new Triangle(2, 4);
 
-        Man man = new Man();
-        Cat cat = new Cat();
-        Robot robot= new Robot();
+        List<Figure> arraylist = new ArrayList<>();
+        arraylist.add(square);
+        arraylist.add(round);
+        arraylist.add(triangle);
 
-        Treadmill treadmill=new Treadmill();
-        Wall wall = new Wall();
+        countAllAreas(arraylist);
+
+
+        Man man = new Man(100, 50);
+        Cat cat = new Cat(40, 20);
+        Robot robot = new Robot(200, 100);
+        Treadmill treadmill = new Treadmill(100);
+        Wall wall = new Wall(50);
 
         man.run(treadmill);
         man.jump(wall);
-
         cat.run(treadmill);
         cat.jump(wall);
-
         robot.run(treadmill);
         robot.jump(wall);
 
-        Participant [] participants = new Participant[] {man,cat,robot};
-        Obstacle [] obstacles = new Obstacle[] {treadmill,wall};
+        List<Participant> participants = new ArrayList<>();
+        participants.add(man);
+        participants.add(cat);
+        participants.add(robot);
+        List<Obstacle> obstacles = new ArrayList<>();
+        obstacles.add(treadmill);
+        obstacles.add(wall);
 
-        for (int i = 0; i < participants.length; i++) {
-
-            for (int j = 0; j < obstacles.length; j++) {
-                if (obstacles[j]==treadmill){
-                    participants[i].run(obstacles[j]);
+        for (Participant p : participants) {
+            for (Obstacle o : obstacles) {
+                if (o == wall) {
+                    p.jump(o);
+                } else {
+                    p.run(o);
                 }
-                else {
-                    participants[i].jump(obstacles[j]);
-                }
-
-
             }
         }
-
-    }
-}
-
-class Participant {
-    public void run(Treadmill treadmill) {
-        System.out.println("run");
     }
 
-    public void jump(Wall wall) {
-        System.out.println("jump");
-    }
-}
+    public static void countAllAreas(List<Figure> arrayList) {
+        int sumSquare = 0;
+        for (Figure f : arrayList) {
+            sumSquare = sumSquare + f.calcArea();
+        }
+        System.out.println("Sum of all figures = " + sumSquare);
 
-class Man extends Participant {
-    public void run(Treadmill treadmill) {
-        System.out.println("Man runs");
     }
-
-    public void jump(Wall wall) {
-        System.out.println("Man jumps");
-    }
-}
-
-class Cat extends Participant {
-    public void run(Treadmill treadmill) {
-        System.out.println("Cat runs");
-    }
-
-    public void jump(Wall wall) {
-        System.out.println("Cat jumps");
-    }
-}
-
-class Robot extends Participant {
-    public void run(Treadmill treadmill) {
-        System.out.println("Robot runs");
-    }
-
-    public void jump(Wall wall) {
-        System.out.println("Robot jumps");
-    }
-
 }
