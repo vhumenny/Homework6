@@ -1,16 +1,16 @@
-package com.company;
+package lesson3.homework6;
 
-import com.company.figures.Figure;
-import com.company.figures.Round;
-import com.company.figures.Square;
-import com.company.figures.Triangle;
-import com.company.obstacles.Obstacle;
-import com.company.obstacles.Treadmill;
-import com.company.obstacles.Wall;
-import com.company.participants.Cat;
-import com.company.participants.Man;
-import com.company.participants.Participant;
-import com.company.participants.Robot;
+import lesson3.homework6.figures.Figure;
+import lesson3.homework6.figures.Round;
+import lesson3.homework6.figures.Square;
+import lesson3.homework6.figures.Triangle;
+import lesson3.homework6.obstacles.Obstacle;
+import lesson3.homework6.obstacles.Treadmill;
+import lesson3.homework6.obstacles.Wall;
+import lesson3.homework6.participants.Cat;
+import lesson3.homework6.participants.Man;
+import lesson3.homework6.participants.Participant;
+import lesson3.homework6.participants.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,22 +49,21 @@ public class Main {
                 else p.run(o);
                 if (o.overcome(p) && o.getClass() == Wall.class) {
                     System.out.println("Participant " + p + " overcame obstacle " + o +
-                            " on distance " + wall.getHeight());
+                            " on distance " + ((Wall) o).getHeight());
                 }
                 if (!o.overcome(p) && o.getClass() == Wall.class) {
                     System.out.println("Participant " + p + " didn't overcame obstacle " + o +
-                            " on distance " + wall.getHeight() + ". He overcame " + p.getJumpHeight());
+                            " on distance " + ((Wall) o).getHeight() + ". He overcame " + p.getJumpHeight());
                 }
                 if (o.overcome(p) && o.getClass() == Treadmill.class) {
                     System.out.println("Participant " + p + " overcame obstacle " + o +
-                            " on distance " + treadmill.getLength());
+                            " on distance " + ((Treadmill) o).getLength());
                 }
                 if (!o.overcome(p) && o.getClass() == Treadmill.class) {
                     System.out.println("Participant " + p + " didn't overcame obstacle " + o +
-                            " on distance " + treadmill.getLength() + ". He overcame " + p.getRunLength());
+                            " on distance " + ((Treadmill) o).getLength() + ". He overcame " + p.getRunLength());
                 }
             }
-
         }
     }
 

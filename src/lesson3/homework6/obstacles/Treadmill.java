@@ -1,6 +1,6 @@
-package com.company.obstacles;
+package lesson3.homework6.obstacles;
 
-import com.company.participants.Participant;
+import lesson3.homework6.participants.Participant;
 
 public class Treadmill extends Obstacle {
     private int length;

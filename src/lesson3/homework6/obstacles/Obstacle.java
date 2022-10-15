@@ -1,6 +1,6 @@
-package com.company.obstacles;
+package lesson3.homework6.obstacles;
 
-import com.company.participants.Participant;
+import lesson3.homework6.participants.Participant;
 
 public abstract class Obstacle {
     public abstract boolean overcome(Participant participant);

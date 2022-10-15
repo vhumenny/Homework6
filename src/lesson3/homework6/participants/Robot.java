@@ -1,6 +1,6 @@
-package com.company.participants;
+package lesson3.homework6.participants;
 
-import com.company.obstacles.Obstacle;
+import lesson3.homework6.obstacles.Obstacle;
 
 public class Robot extends Participant {
 
