@@ -92,6 +92,6 @@ public class HomeWorkApp {
     public static void checkIfYearIsLeap(Scanner scanner) {
         System.out.println("Let's check if the year is leap. \nPlease enter the year: ");
         int year = scanner.nextInt();
-        System.out.println((year%4==0)&&(year%100!=0)||(year%400==0));
+        System.out.println((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
     }
 }
