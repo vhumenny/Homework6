@@ -20,6 +20,7 @@ public class HomeWorkApp {
         int d = scanner.nextInt();
         checkNumbers(c, d);
 
+
         System.out.println("Enter number e, to check if it's positive or negative: ");
         int e = scanner.nextInt();
         checkIfPositive(e);
@@ -70,8 +71,9 @@ public class HomeWorkApp {
         else System.out.println("a<b");
     }
 
-    public static void checkNumbers(int c, int d) {
-        System.out.println(c + d >= 10 && c + d <= 20);
+    public static boolean checkNumbers(int c, int d) {
+        int a = c + d;
+        return a >= 10 && a <= 20;
     }
 
     public static void checkIfPositive(int e) {
@@ -79,10 +81,8 @@ public class HomeWorkApp {
         else System.out.println("The number " + e + " is negative.");
     }
 
-    public static void checkIfNegative(int f) {
-        if (f < 0) System.out.println(true);
-        if (f > 0) System.out.println(false);
-        if (f == 0) System.out.println("Number f equals zero");
+    public static boolean checkIfNegative(int f) {
+        return f < 0;
     }
 
     public static void printString(String string, int g) {
@@ -91,9 +91,9 @@ public class HomeWorkApp {
         }
     }
 
-    public static void checkIfYearIsLeap(Scanner scanner) {
+    public static boolean checkIfYearIsLeap(Scanner scanner) {
         System.out.println("Let's check if the year is leap. \nPlease enter the year: ");
         int year = scanner.nextInt();
-        System.out.println(year % 4 == 0 && year % 100 != 0 || year % 400 == 0);
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 }
