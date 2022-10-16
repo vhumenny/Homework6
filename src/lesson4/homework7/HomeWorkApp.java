@@ -80,7 +80,9 @@ public class HomeWorkApp {
     }
 
     public static void checkIfNegative(int f) {
-        System.out.println(f < 0);
+        if (f < 0) System.out.println(true);
+        if (f > 0) System.out.println(false);
+        if (f == 0) System.out.println("Number f equals zero");
     }
 
     public static void printString(String string, int g) {
@@ -92,6 +94,6 @@ public class HomeWorkApp {
     public static void checkIfYearIsLeap(Scanner scanner) {
         System.out.println("Let's check if the year is leap. \nPlease enter the year: ");
         int year = scanner.nextInt();
-        System.out.println((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
+        System.out.println(year % 4 == 0 && year % 100 != 0 || year % 400 == 0);
     }
 }
