@@ -64,9 +64,7 @@ public class HomeWorkApp {
     }
 
     public static void guessTheWord(Scanner scanner, Random random) {
-        String[] words = new String[]{"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli",
-                "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive",
-                "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        String[] words = new String[]{"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
         System.out.println("List of the words and one of them is hidden: \n" + Arrays.toString(words));
         int numberOfHiddenWord = random.nextInt(0, words.length - 1);
         String hiddenWord = words[numberOfHiddenWord];
@@ -75,15 +73,13 @@ public class HomeWorkApp {
 
         while (!hiddenWord.intern().equals(usersWord.intern())) {
             char[] wordToShow = new char[15];
+            Arrays.fill(wordToShow, '#');
 
             for (int i = 0; i < hiddenWord.length(); i++) {
+                if (i > usersWord.length() - 1) break;
                 if (hiddenWord.charAt(i) == usersWord.charAt(i)) wordToShow[i] = usersWord.charAt(i);
-                else wordToShow[i] = '#';
             }
 
-            for (int i = hiddenWord.length(); i < wordToShow.length; i++) {
-                wordToShow[i] = '#';
-            }
             System.out.println("prompt: " + String.copyValueOf(wordToShow));
             System.out.println("Please try again and guess the hidden word. Enter your word :");
             usersWord = scanner.next();
