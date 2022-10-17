@@ -74,17 +74,17 @@ public class HomeWorkApp {
         String usersWord = scanner.next();
 
         while (!hiddenWord.intern().equals(usersWord.intern())) {
-            char[] arrayOfChars = new char[15];
+            char[] wordToShow = new char[15];
 
             for (int i = 0; i < hiddenWord.length(); i++) {
-                if (hiddenWord.charAt(i) == usersWord.charAt(i)) arrayOfChars[i] = usersWord.charAt(i);
-                else arrayOfChars[i] = '#';
+                if (hiddenWord.charAt(i) == usersWord.charAt(i)) wordToShow[i] = usersWord.charAt(i);
+                else wordToShow[i] = '#';
             }
 
-            for (int i = hiddenWord.length(); i < arrayOfChars.length; i++) {
-                arrayOfChars[i] = '#';
+            for (int i = hiddenWord.length(); i < wordToShow.length; i++) {
+                wordToShow[i] = '#';
             }
-            System.out.println("prompt: " + String.copyValueOf(arrayOfChars));
+            System.out.println("prompt: " + String.copyValueOf(wordToShow));
             System.out.println("Please try again and guess the hidden word. Enter your word :");
             usersWord = scanner.next();
         }
