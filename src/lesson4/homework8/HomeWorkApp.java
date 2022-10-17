@@ -64,7 +64,9 @@ public class HomeWorkApp {
     }
 
     public static void guessTheWord(Scanner scanner, Random random) {
-        String[] words = new String[]{"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        String[] words = new String[]{"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
+                "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea",
+                "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
         System.out.println("List of the words and one of them is hidden: \n" + Arrays.toString(words));
         int numberOfHiddenWord = random.nextInt(0, words.length - 1);
         String hiddenWord = words[numberOfHiddenWord];
