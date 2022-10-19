@@ -28,7 +28,6 @@ public class HomeWorkApp {
         System.out.println(isPalindrome(p));
 
         guessTheWord(scanner, random);
-
     }
 
     public static int findSymbolOccurance(String string, char a) {
@@ -55,9 +54,10 @@ public class HomeWorkApp {
     }
 
     public static boolean isPalindrome(String p) {
+        char[] array = p.toCharArray();
         StringBuilder reversed = new StringBuilder();
 
-        for (int i = 0; i < p.length(); i++) {
+        for (int i = array.length - 1; i >= 0; i--) {
             reversed.append(p.charAt(i));
         }
         return p.intern().equals(reversed.toString().intern());
