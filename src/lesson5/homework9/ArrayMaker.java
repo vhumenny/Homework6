@@ -2,7 +2,7 @@ package lesson5.homework9;
 
 public class ArrayMaker {
     private String[][] twoDimensionalArray;
-    private int sumResult = 0;
+//    private int sumResult = 0;
 
     public ArrayMaker(String[][] twoDimensionalArray) {
         this.twoDimensionalArray = twoDimensionalArray;
@@ -16,11 +16,11 @@ public class ArrayMaker {
         this.twoDimensionalArray = twoDimensionalArray;
     }
 
-    public int getSumResult() {
-        return sumResult;
-    }
-
-    public void setSumResult(int sumResult) {
-        this.sumResult = sumResult;
-    }
+//    public int getSumResult() {
+//        return sumResult;
+//    }
+//
+//    public void setSumResult(int sumResult) {
+//        this.sumResult = sumResult;
+//    }
 }
