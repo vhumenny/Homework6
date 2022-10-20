@@ -12,20 +12,7 @@ public class ArrayValueCalculator {
                 }
                 result += Integer.parseInt(array[i][j]);
             }
-
         }
-
-//            System.out.println(Integer.parseInt(array[0][0]));
-//            for (int j = 0; j < intArray.length; j++) {
-////                if ( !Character.isDigit(str.charAt(i)))
-//                for (int k = 0; k <intArray[0].length; k++) {
-//                    result += intArray[j][k];
-//                }
-//            }
-
         return result;
     }
 }
-
-
-//Arrays.deepToString(myArray);
