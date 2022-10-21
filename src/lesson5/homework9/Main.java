@@ -2,25 +2,26 @@ package lesson5.homework9;
 
 import lesson5.homework9.arrayMethods.ArrayValueCalculator;
 import lesson5.homework9.arrayMethods.TwoDimensionalArrayFiller;
-import lesson5.homework9.arrayMethods.TwoDimensionalArrayMaker;
 import lesson5.homework9.exceptions.ArrayDataException;
 import lesson5.homework9.exceptions.ArraySizeException;
 
-import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        String[][] array = new String[4][4];
+        Scanner scanner = new Scanner(System.in);
+
         ArrayValueCalculator calculator = new ArrayValueCalculator();
         TwoDimensionalArrayFiller arrayFiller = new TwoDimensionalArrayFiller();
-        TwoDimensionalArrayMaker arrayMaker = new TwoDimensionalArrayMaker(new String[4][4]);
 
         try {
-            arrayFiller.fillArrayOfStrings(arrayMaker.getTwoDimensionalArray(), new Random());
+            arrayFiller.fillArrayOfStrings(array, scanner);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
         try {
-            calculator.doCalc(arrayMaker.getTwoDimensionalArray());
+            calculator.doCalc(array);
         } catch (ArraySizeException | ArrayDataException e) {
             e.printStackTrace();
         }
