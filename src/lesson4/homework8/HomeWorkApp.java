@@ -81,7 +81,6 @@ public class HomeWorkApp {
                 if (i > usersWord.length() - 1) break;
                 if (hiddenWord.charAt(i) == usersWord.charAt(i)) wordToShow[i] = usersWord.charAt(i);
             }
-
             System.out.println("prompt: " + String.copyValueOf(wordToShow));
             System.out.println("Please try again and guess the hidden word. Enter your word :");
             usersWord = scanner.next();
