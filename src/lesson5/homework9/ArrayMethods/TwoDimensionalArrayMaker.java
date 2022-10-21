@@ -1,4 +1,4 @@
-package lesson5.homework9;
+package lesson5.homework9.ArrayMethods;
 
 public class TwoDimensionalArrayMaker {
     private String[][] twoDimensionalArray;
