@@ -11,7 +11,6 @@ public class ArrayValueCalculator {
         }
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
-//                System.out.println(Integer.valueOf(Integer.parseInt(array[i][j],123)Integer.parseInt(array[i][j])));
                 if (!(Integer.parseInt(array[i][j]) >= 0 || Integer.parseInt(array[i][j]) < 0)) {
                     throw new ArrayDataException("Array transformation from String into int went wrong in " +
                             "array[" + i + "][" + j + "]");
