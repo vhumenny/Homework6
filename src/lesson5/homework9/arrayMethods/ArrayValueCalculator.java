@@ -6,7 +6,7 @@ import lesson5.homework9.exceptions.ArraySizeException;
 public class ArrayValueCalculator {
     public int doCalc(String[][] array) throws ArraySizeException, ArrayDataException {
         int result = 0;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < 4; i++) {
             if (array.length != 4 || array[i].length != 4) {
                 throw new ArraySizeException("Array size is wrong. It must be 4x4");
             }
