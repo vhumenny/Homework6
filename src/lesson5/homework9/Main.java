@@ -1,10 +1,10 @@
 package lesson5.homework9;
 
-import lesson5.homework9.ArrayMethods.ArrayValueCalculator;
-import lesson5.homework9.ArrayMethods.TwoDimensionalArrayFiller;
-import lesson5.homework9.ArrayMethods.TwoDimensionalArrayMaker;
-import lesson5.homework9.Exceptions.ArrayDataException;
-import lesson5.homework9.Exceptions.ArraySizeException;
+import lesson5.homework9.arrayMethods.ArrayValueCalculator;
+import lesson5.homework9.arrayMethods.TwoDimensionalArrayFiller;
+import lesson5.homework9.arrayMethods.TwoDimensionalArrayMaker;
+import lesson5.homework9.exceptions.ArrayDataException;
+import lesson5.homework9.exceptions.ArraySizeException;
 
 import java.util.Random;
 

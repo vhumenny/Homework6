@@ -1,7 +1,7 @@
-package lesson5.homework9.ArrayMethods;
+package lesson5.homework9.arrayMethods;
 
-import lesson5.homework9.Exceptions.ArrayDataException;
-import lesson5.homework9.Exceptions.ArraySizeException;
+import lesson5.homework9.exceptions.ArrayDataException;
+import lesson5.homework9.exceptions.ArraySizeException;
 
 public class ArrayValueCalculator {
     public int doCalc(String[][] array) throws ArraySizeException, ArrayDataException {
