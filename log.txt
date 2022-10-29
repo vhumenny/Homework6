@@ -1,0 +1,2 @@
+[29.10.2022, 20:35] [DEBUG] Message: [debug method is running].
+[29.10.2022, 20:35] [INFO] Message: [debug method is running].
