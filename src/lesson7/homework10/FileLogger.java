@@ -1,27 +1,26 @@
 package lesson7.homework10;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
 public class FileLogger {
-    public static void main(String[] args) throws FileMaxSizeReachedException {
+    public static void main(String[] args) throws FileMaxSizeReachedException, IOException {
         String debugMessage = "debug method is running";
         String infoMessage = "info method is running";
 
         debug(debugMessage);
         info(infoMessage);
+        System.out.println(FileLoggerConfigurationLoader.load());
+
     }
 
     public static void debug(String message) throws FileMaxSizeReachedException {
         FileLoggerConfiguration debugConfiguration = new FileLoggerConfiguration(LoggingLevel.DEBUG);
 
         if (debugConfiguration.getFile().length() >= debugConfiguration.getMaxCapacity()) {
-            throw new FileMaxSizeReachedException("Max file size is = " + debugConfiguration.getMaxCapacity() +
-                    " You have reached the file size =" + debugConfiguration.getFile().length() + " Path to file = "
-                    + debugConfiguration.getFile().getAbsolutePath());
+
         }
         writerInFile(debugConfiguration, message);
     }
