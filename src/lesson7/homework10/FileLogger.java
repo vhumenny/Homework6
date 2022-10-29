@@ -1,6 +1,7 @@
 package lesson7.homework10;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
@@ -20,23 +21,23 @@ public class FileLogger {
         FileLoggerConfiguration debugConfiguration = new FileLoggerConfiguration(LoggingLevel.DEBUG);
 
         if (debugConfiguration.getFile().length() >= debugConfiguration.getMaxCapacity()) {
+            File file =  new File("Log_"+new Date()+".txt");
+            writerInFile(debugConfiguration, message,file);
 
-        }
-        writerInFile(debugConfiguration, message);
+        } else writerInFile(debugConfiguration, message,debugConfiguration.getFile());
     }
 
     public static void info(String message) throws FileMaxSizeReachedException {
         FileLoggerConfiguration infoConfiguration = new FileLoggerConfiguration(LoggingLevel.INFO);
 
         if (infoConfiguration.getFile().length() >= infoConfiguration.getMaxCapacity()) {
-            throw new FileMaxSizeReachedException("Max file size is = " + infoConfiguration.getMaxCapacity() +
-                    " You have reached the file size =" + infoConfiguration.getFile().length() + " Path to file = "
-                    + infoConfiguration.getFile().getAbsolutePath());
+            File file =  new File("Log_"+new Date()+".txt");
+            writerInFile(infoConfiguration, message,file);
         }
-        writerInFile(infoConfiguration, message);
+        writerInFile(infoConfiguration, message, infoConfiguration.getFile());
     }
 
-    public static void writerInFile(FileLoggerConfiguration fileLoggerConfiguration, String message) {
+    public static void writerInFile(FileLoggerConfiguration fileLoggerConfiguration, String message, File file) {
 
         if (fileLoggerConfiguration.getLevel().equals(LoggingLevel.DEBUG)) {
             Object[] argsDebug = {new Date(), fileLoggerConfiguration.getLevel(), message};
@@ -44,7 +45,7 @@ public class FileLogger {
 
             String stringToWriteDebug = fileLoggerConfiguration.getFormat().format(argsDebug);
             String stringToWriteInfo = fileLoggerConfiguration.getFormat().format(argsInfo);
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileLoggerConfiguration.getFile(),
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,
                     true))) {
                 writer.write(stringToWriteDebug);
                 writer.write(stringToWriteInfo);
@@ -54,7 +55,7 @@ public class FileLogger {
         } else {
             Object[] argsInfo = {new Date(), fileLoggerConfiguration.getLevel(), message};
             String stringToWriteInfo = fileLoggerConfiguration.getFormat().format(argsInfo);
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileLoggerConfiguration.getFile(),
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,
                     true))) {
                 writer.write(stringToWriteInfo);
             } catch (IOException e) {
