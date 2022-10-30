@@ -1,4 +1,7 @@
-package lesson7.homework10;
+package lesson7.homework10.fileLogger;
+
+import lesson7.homework10.Logger;
+import lesson7.homework10.LoggingLevel;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,13 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileLogger extends Logger {
-
-    public static void main(String[] args) {
-        FileLogger fileLogger = new FileLogger();
-
-        fileLogger.debug(fileLogger.getDebugMessage());
-        fileLogger.info(fileLogger.getInfoMessage());
-    }
 
     @Override
     public void debug(String message) {

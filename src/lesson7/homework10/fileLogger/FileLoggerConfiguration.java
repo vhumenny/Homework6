@@ -1,4 +1,7 @@
-package lesson7.homework10;
+package lesson7.homework10.fileLogger;
+
+import lesson7.homework10.LoggerConfiguration;
+import lesson7.homework10.LoggingLevel;
 
 import java.io.File;
 import java.text.MessageFormat;

@@ -1,5 +1,7 @@
 package lesson7.homework10;
 
+import lesson7.homework10.fileLogger.FileLoggerConfiguration;
+
 import java.io.File;
 
 public abstract class Logger {
