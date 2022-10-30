@@ -21,7 +21,7 @@ public class FileLogger extends Logger {
         FileLoggerConfiguration debugConfiguration = new FileLoggerConfiguration(LoggingLevel.DEBUG);
 
         if (debugConfiguration.getFile().length() >= debugConfiguration.getMaxCapacity()) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH-mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
             Object[] args = {sdf.format(new Date())};
 
             String fileName = debugConfiguration.getFileNameFormat().format(args);
@@ -36,7 +36,7 @@ public class FileLogger extends Logger {
         FileLoggerConfiguration infoConfiguration = new FileLoggerConfiguration(LoggingLevel.INFO);
 
         if (infoConfiguration.getFile().length() >= infoConfiguration.getMaxCapacity()) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH-mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
             Object[] args = {sdf.format(new Date())};
 
             String fileName = infoConfiguration.getFileNameFormat().format(args);
