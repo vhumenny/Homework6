@@ -1,7 +1,6 @@
 package lesson7.homework10;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
@@ -50,7 +49,7 @@ public class FileLogger {
                 writer.write(stringToWriteDebug);
                 writer.write(stringToWriteInfo);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         } else {
             Object[] argsInfo = {new Date(), fileLoggerConfiguration.getLevel(), message};
@@ -59,7 +58,7 @@ public class FileLogger {
                     true))) {
                 writer.write(stringToWriteInfo);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }
