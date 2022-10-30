@@ -4,40 +4,49 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FileLogger {
-    public static void main(String[] args) throws FileMaxSizeReachedException, IOException {
-        String debugMessage = "debug method is running";
-        String infoMessage = "info method is running";
+public class FileLogger extends Logger {
 
-        debug(debugMessage);
-        info(infoMessage);
-        System.out.println(FileLoggerConfigurationLoader.load());
+    public static void main(String[] args) {
+        FileLogger fileLogger = new FileLogger();
 
+        fileLogger.debug(fileLogger.getDebugMessage());
+        fileLogger.info(fileLogger.getInfoMessage());
     }
 
-    public static void debug(String message) throws FileMaxSizeReachedException {
+    @Override
+    public void debug(String message) {
         FileLoggerConfiguration debugConfiguration = new FileLoggerConfiguration(LoggingLevel.DEBUG);
 
         if (debugConfiguration.getFile().length() >= debugConfiguration.getMaxCapacity()) {
-            File file =  new File("Log_"+new Date()+".txt");
-            writerInFile(debugConfiguration, message,file);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH-mm");
+            Object[] args = {sdf.format(new Date())};
 
-        } else writerInFile(debugConfiguration, message,debugConfiguration.getFile());
+            String fileName = debugConfiguration.getFileNameFormat().format(args);
+            File newFile = new File(fileName);
+            writer(debugConfiguration, message, newFile);
+
+        } else writer(debugConfiguration, message, debugConfiguration.getFile());
     }
 
-    public static void info(String message) throws FileMaxSizeReachedException {
+    @Override
+    public void info(String message) {
         FileLoggerConfiguration infoConfiguration = new FileLoggerConfiguration(LoggingLevel.INFO);
 
         if (infoConfiguration.getFile().length() >= infoConfiguration.getMaxCapacity()) {
-            File file =  new File("Log_"+new Date()+".txt");
-            writerInFile(infoConfiguration, message,file);
-        }
-        writerInFile(infoConfiguration, message, infoConfiguration.getFile());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH-mm");
+            Object[] args = {sdf.format(new Date())};
+
+            String fileName = infoConfiguration.getFileNameFormat().format(args);
+            File newFile = new File(fileName);
+            writer(infoConfiguration, message, newFile);
+        } else writer(infoConfiguration, message, infoConfiguration.getFile());
     }
 
-    public static void writerInFile(FileLoggerConfiguration fileLoggerConfiguration, String message, File file) {
+    @Override
+    public void writer(FileLoggerConfiguration fileLoggerConfiguration, String message, File file) {
 
         if (fileLoggerConfiguration.getLevel().equals(LoggingLevel.DEBUG)) {
             Object[] argsDebug = {new Date(), fileLoggerConfiguration.getLevel(), message};
@@ -50,16 +59,17 @@ public class FileLogger {
                 writer.write(stringToWriteDebug);
                 writer.write(stringToWriteInfo);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         } else {
             Object[] argsInfo = {new Date(), fileLoggerConfiguration.getLevel(), message};
+
             String stringToWriteInfo = fileLoggerConfiguration.getFormat().format(argsInfo);
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,
                     true))) {
                 writer.write(stringToWriteInfo);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }

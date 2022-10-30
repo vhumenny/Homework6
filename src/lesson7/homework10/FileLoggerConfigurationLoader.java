@@ -7,32 +7,39 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Properties;
 
-public class FileLoggerConfigurationLoader {
-    File file;
-    static LoggingLevel level;
-    static byte maxCapacity;
-    static MessageFormat format;
-    static FileLoggerConfiguration configurationFromFile;
+public class FileLoggerConfigurationLoader extends LoggerConfigurationLoader {
 
-    public static FileLoggerConfiguration load() {
+    private LoggingLevel level;
+
+    @Override
+    public FileLoggerConfiguration load() {
         Properties property = new Properties();
+
+        FileLoggerConfiguration configuration;
+
         try (BufferedReader reader = new BufferedReader(new FileReader("logging.properties"))) {
 
             property.load(reader);
-            File file = new File(property.getProperty("FILE"));
             if (property.getProperty("LEVEL").equals("DEBUG")) {
                 level = LoggingLevel.DEBUG;
             } else {
                 level = LoggingLevel.INFO;
             }
-            maxCapacity = Byte.parseByte(property.getProperty("MAX-SIZE"));
-            format = new MessageFormat(property.getProperty("FORMAT"));
-            configurationFromFile = new FileLoggerConfiguration(file, level,maxCapacity,format);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        configuration = new FileLoggerConfiguration(level, new MessageFormat(property.getProperty("FORMAT")),
+                new File(property.getProperty("FILE")), Byte.parseByte(property.getProperty("MAX-SIZE")));
 
-        return configurationFromFile;
+        return configuration;
+    }
+
+    public LoggingLevel getLevel() {
+        return level;
+    }
+
+    public void setLevel(LoggingLevel level) {
+        this.level = level;
     }
 }
