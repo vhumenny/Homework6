@@ -1,7 +1,7 @@
 package lesson8.homework11;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         long start = System.currentTimeMillis();
         ValueCalculator valueCalculator = new ValueCalculator();
 
