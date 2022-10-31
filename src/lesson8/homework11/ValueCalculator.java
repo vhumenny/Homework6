@@ -1,23 +1,12 @@
 package lesson8.homework11;
-import java.util.Arrays;
 
 public class ValueCalculator {
-    private static int arrayLength = 1000000;
-    private static float[] array = new float[arrayLength];
-    private static int halfArrayLength = arrayLength / 2;
-
-    public static void main(String[] args) {
-        long start = System.currentTimeMillis();
-        ValueCalculator valueCalculator = new ValueCalculator();
-
-
-        System.out.println(valueCalculator.doCalc());
-    }
+    private static final int arrayLength = 1111000;
+    private float[] array = new float[arrayLength];
+    private int halfArrayLength = arrayLength / 2;
 
     public long doCalc() {
         long start = System.currentTimeMillis();
-
-        System.out.println(start);
         float numForArray = 1;
 
         for (int i = 0; i < arrayLength; i++) {
@@ -25,37 +14,34 @@ public class ValueCalculator {
         }
         float[] array1 = new float[halfArrayLength];
         float[] array2 = new float[halfArrayLength];
-        System.arraycopy(array, 0, array1, 0, halfArrayLength);
-        System.arraycopy(array, 0, array2, 0, halfArrayLength);
+        try {
+            System.arraycopy(array, 0, array1, 0, halfArrayLength);
+            System.arraycopy(array, 0, array2, 0, halfArrayLength);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new Thread(() -> {
+            for (int i = 0; i < halfArrayLength; i++) {
 
-        Thread arrayPart1 = new Thread(new arrayPart1Filler());
-        Thread arrayPart2 = new Thread(new arrayPart2Filler());
+                array1[i] = (float) (array1[i] * Math.sin(0.2f + i / 5) *
+                        Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+            }
+        }).start();
 
-        arrayPart1.start();
-        arrayPart2.start();
+        new Thread(() -> {
+            for (int i = 0; i < halfArrayLength; i++) {
 
-        System.arraycopy(array1, 0, array, 0, halfArrayLength);
+                array2[i] = (float) (array2[i] * Math.sin(0.2f + i / 5) *
+                        Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+            }
+        }).start();
 
-        System.arraycopy(array2, 0, array, halfArrayLength, halfArrayLength);
-        System.out.println(Arrays.toString(array1));
-        System.out.println(Arrays.toString(array2));
-        long finish = System.currentTimeMillis();
-        return finish - start;
-    }
-
-    public static float[] getArray() {
-        return array;
-    }
-
-    public static void setArray(float[] array) {
-        ValueCalculator.array = array;
-    }
-
-    public static int getHalfArrayLength() {
-        return halfArrayLength;
-    }
-
-    public static void setHalfArrayLength(int halfArrayLength) {
-        ValueCalculator.halfArrayLength = halfArrayLength;
+        try {
+            System.arraycopy(array1, 0, array, 0, halfArrayLength);
+            System.arraycopy(array2, 0, array, halfArrayLength - 1, halfArrayLength);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return System.currentTimeMillis() - start;
     }
 }
