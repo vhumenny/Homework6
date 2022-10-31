@@ -13,36 +13,33 @@ import java.util.Date;
 public class FileLogger extends Logger {
 
     @Override
-    public void debug(String message) {
-        FileLoggerConfiguration debugConfiguration = new FileLoggerConfiguration(LoggingLevel.DEBUG);
+    public void debug(FileLoggerConfiguration debugConfiguration, String message) {
 
         if (debugConfiguration.getFile().length() >= debugConfiguration.getMaxCapacity()) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
             Object[] args = {sdf.format(new Date())};
 
             String fileName = debugConfiguration.getFileNameFormat().format(args);
-            File newFile = new File(fileName);
-            writer(debugConfiguration, message, newFile);
-
-        } else writer(debugConfiguration, message, debugConfiguration.getFile());
+            debugConfiguration.setFile(new File(fileName));
+            writer(debugConfiguration, message);
+        } else writer(debugConfiguration, message);
     }
 
     @Override
-    public void info(String message) {
-        FileLoggerConfiguration infoConfiguration = new FileLoggerConfiguration(LoggingLevel.INFO);
+    public void info(FileLoggerConfiguration infoConfiguration, String message) {
 
         if (infoConfiguration.getFile().length() >= infoConfiguration.getMaxCapacity()) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
             Object[] args = {sdf.format(new Date())};
 
             String fileName = infoConfiguration.getFileNameFormat().format(args);
-            File newFile = new File(fileName);
-            writer(infoConfiguration, message, newFile);
-        } else writer(infoConfiguration, message, infoConfiguration.getFile());
+            infoConfiguration.setFile(new File(fileName));
+            writer(infoConfiguration, message);
+        } else writer(infoConfiguration, message);
     }
 
     @Override
-    public void writer(FileLoggerConfiguration fileLoggerConfiguration, String message, File file) {
+    public void writer(FileLoggerConfiguration fileLoggerConfiguration, String message) {
 
         if (fileLoggerConfiguration.getLevel().equals(LoggingLevel.DEBUG)) {
             Object[] argsDebug = {new Date(), fileLoggerConfiguration.getLevel(), message};
@@ -50,7 +47,7 @@ public class FileLogger extends Logger {
 
             String stringToWriteDebug = fileLoggerConfiguration.getFormat().format(argsDebug);
             String stringToWriteInfo = fileLoggerConfiguration.getFormat().format(argsInfo);
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileLoggerConfiguration.getFile(),
                     true))) {
                 writer.write(stringToWriteDebug);
                 writer.write(stringToWriteInfo);
@@ -61,7 +58,7 @@ public class FileLogger extends Logger {
             Object[] argsInfo = {new Date(), fileLoggerConfiguration.getLevel(), message};
 
             String stringToWriteInfo = fileLoggerConfiguration.getFormat().format(argsInfo);
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileLoggerConfiguration.getFile(),
                     true))) {
                 writer.write(stringToWriteInfo);
             } catch (IOException e) {

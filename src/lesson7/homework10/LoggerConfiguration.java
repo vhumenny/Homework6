@@ -5,11 +5,7 @@ import java.text.MessageFormat;
 public abstract class LoggerConfiguration {
 
     private LoggingLevel level;
-    private MessageFormat format = new MessageFormat("[{0}] [{1}] Message: [{2}].\n");
-
-    public LoggerConfiguration(LoggingLevel level) {
-        this.level = level;
-    }
+    private MessageFormat format;
 
     public LoggerConfiguration(LoggingLevel level, MessageFormat format) {
         this.level = level;

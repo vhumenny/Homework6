@@ -8,14 +8,10 @@ import java.text.MessageFormat;
 
 public class FileLoggerConfiguration extends LoggerConfiguration {
 
-    private File file = new File("log.txt");
-    private byte maxCapacity = 100;
+    private File file;
+    private byte maxCapacity;
 
     private MessageFormat fileNameFormat = new MessageFormat("Log_{0}.txt");
-
-    public FileLoggerConfiguration(LoggingLevel level) {
-        super(level);
-    }
 
     public FileLoggerConfiguration(LoggingLevel level, MessageFormat format, File file, byte maxCapacity) {
         super(level, format);
