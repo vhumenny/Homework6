@@ -1,11 +1,9 @@
 package lesson8.homework11;
 
 public class ValueCalculator {
-    private static final int arrayLength = 1111000;
+    private static final int arrayLength = 1000000;
     private float[] array = new float[arrayLength];
     private int halfArrayLength = arrayLength / 2;
-    private float[] array1Part = new float[halfArrayLength];
-    private float[] array2Part = new float[halfArrayLength];
 
     public long doCalc() throws InterruptedException {
         long start = System.currentTimeMillis();
@@ -14,14 +12,14 @@ public class ValueCalculator {
         for (int i = 0; i < arrayLength; i++) {
             array[i] = numForArray;
         }
-        array1Part = new float[halfArrayLength];
-        array2Part = new float[halfArrayLength];
+        float[] array1Part = new float[halfArrayLength];
+        float[] array2Part = new float[halfArrayLength];
 
         System.arraycopy(array, 0, array1Part, 0, halfArrayLength);
         System.arraycopy(array, halfArrayLength, array2Part, 0, halfArrayLength);
 
-        Thread thread1 = new Thread(new Thread1());
-        Thread thread2 = new Thread(new Thread2());
+        Thread thread1 = new Thread(new ArrayCalculationThread(array1Part));
+        Thread thread2 = new Thread(new ArrayCalculationThread(array2Part));
         thread1.start();
         thread2.start();
 
@@ -33,21 +31,17 @@ public class ValueCalculator {
         return System.currentTimeMillis() - start;
     }
 
-    public class Thread1 implements Runnable {
-        @Override
-        public void run() {
-            for (int i = 0; i < array1Part.length; i++) {
-                array1Part[i] = (float) (array1Part[i] * Math.sin(0.2f + i / 5) *
-                        Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
-            }
-        }
-    }
+    public class ArrayCalculationThread implements Runnable {
+        float[] array;
 
-    public class Thread2 implements Runnable {
+        public ArrayCalculationThread(float[] array) {
+            this.array = array;
+        }
+
         @Override
         public void run() {
-            for (int i = 0; i < array2Part.length; i++) {
-                array2Part[i] = (float) (array2Part[i] * Math.sin(0.2f + i / 5) *
+            for (int i = 0; i < array.length; i++) {
+                array[i] = (float) (array[i] * Math.sin(0.2f + i / 5) *
                         Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
             }
         }
