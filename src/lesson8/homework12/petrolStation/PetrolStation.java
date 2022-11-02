@@ -25,7 +25,7 @@ public class PetrolStation {
 class PetrolStationConsumer implements Runnable {
     private float amountToTake;
     private Semaphore semaphore;
-    PetrolStation petrolStation = new PetrolStation();
+    private PetrolStation petrolStation = new PetrolStation();
     private int consumerId;
 
     public PetrolStationConsumer(float amountToTake, Semaphore semaphore, int consumerId) {
