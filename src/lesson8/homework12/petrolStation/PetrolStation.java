@@ -41,9 +41,10 @@ class PetrolStationConsumer implements Runnable {
         try {
             semaphore.acquire(1);
             petrolStation.doRefuel(amountToTake, consumerId);
-            semaphore.release(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            semaphore.release(1);
         }
     }
 }
