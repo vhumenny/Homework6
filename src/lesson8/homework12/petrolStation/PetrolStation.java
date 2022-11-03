@@ -1,18 +1,20 @@
 package lesson8.homework12.petrolStation;
 
+import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 public class PetrolStation {
     private static volatile float amount = 100;
 
     public void doRefuel(float amountToTake, int consumerId) {
+        Random random = new Random();
 
         if (amountToTake > amount) {
             throw new RuntimeException("Not enough fuel on Petrol station. There's only " + amount + " left.");
         } else {
             try {
                 System.out.println("Consumer " + consumerId + " started refueling");
-                Thread.sleep(3000);
+                Thread.sleep(random.nextInt(3000, 10000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

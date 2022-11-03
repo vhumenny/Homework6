@@ -32,7 +32,7 @@ public class ValueCalculator {
     }
 
     public class ArrayCalculationThread implements Runnable {
-        float[] array;
+       private float[] array;
 
         public ArrayCalculationThread(float[] array) {
             this.array = array;
