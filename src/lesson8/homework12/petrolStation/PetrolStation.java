@@ -2,15 +2,15 @@ package lesson8.homework12.petrolStation;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PetrolStation {
-    private static volatile float amount = 100;
+    private static AtomicInteger amount = new AtomicInteger((int) 100f);
 
     public void doRefuel(float amountToTake, int consumerId) {
         Random random = new Random();
-
-        if (amountToTake > amount) {
-            throw new RuntimeException("Not enough fuel on Petrol station. There's only " + amount + " left.");
+        if (amountToTake > amount.intValue()) {
+            throw new RuntimeException("Not enough fuel on Petrol station. There's only " + amount.intValue() + " left.");
         } else {
             try {
                 System.out.println("Consumer " + consumerId + " started refueling");
@@ -19,7 +19,7 @@ public class PetrolStation {
                 e.printStackTrace();
             }
         }
-        amount -= amountToTake;
+        amount.getAndAdd((int) -amountToTake);
         System.out.println("Consumer " + consumerId + " finished refueling");
     }
 }
