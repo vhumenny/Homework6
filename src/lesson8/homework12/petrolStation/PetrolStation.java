@@ -4,23 +4,28 @@ import java.util.Random;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class PetrolStation {
-    private static AtomicInteger amount = new AtomicInteger((int) 100f);
+public class PetrolStation implements Runnable {
+    private static AtomicInteger amount = new AtomicInteger((int) 30f);
+    private float amountToTake;
+    private int consumerNumber;
+    private Semaphore semaphore;
+    private static final Object lock = new Object();
 
-    public void doRefuel(PetrolStationConsumer consumer) {
+    public void doRefuel(float amountToTake) {
         Random random = new Random();
-        Semaphore semaphore = consumer.getSemaphore();
-
         try {
             semaphore.acquire(1);
-            if (consumer.getAmountToTake() > amount.intValue()) {
-                throw new RuntimeException("Not enough fuel on Petrol station for Consumer " + consumer.getConsumerId()
-                        + ". There's only " + amount.intValue() + " left.");
-            } else {
-                System.out.println("Consumer " + consumer.getConsumerId() + " started refueling");
-                amount.getAndAdd((int) -consumer.getAmountToTake());
-                Thread.sleep(random.nextInt(3000, 10000));
-                System.out.println("Consumer " + consumer.getConsumerId() + " finished refueling");
+            System.out.println("Consumer " + consumerNumber + " came to the petrol station");
+            synchronized (lock) {
+                if (amountToTake > amount.floatValue()) {
+                    throw new RuntimeException("Not enough fuel on Petrol station for Consumer " + consumerNumber
+                            + ". There's only " + amount.intValue() + " left.");
+                } else {
+                    System.out.println("Consumer " + consumerNumber + " started refueling");
+                    amount.getAndAdd((int) -amountToTake);
+                    Thread.sleep(random.nextInt(3000, 10000));
+                    System.out.println("Consumer " + consumerNumber + " finished refueling");
+                }
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -28,35 +33,16 @@ public class PetrolStation {
             semaphore.release(1);
         }
     }
-}
-
-class PetrolStationConsumer implements Runnable {
-    private float amountToTake;
-    private PetrolStation petrolStation = new PetrolStation();
-    private int consumerId;
-    private Semaphore semaphore;
-
-    public PetrolStationConsumer(float amountToTake, int consumerId, Semaphore semaphore) {
-        this.amountToTake = amountToTake;
-        this.consumerId = consumerId;
-        this.semaphore = semaphore;
-    }
 
     @Override
     public void run() {
-        petrolStation.doRefuel(this);
+        doRefuel(this.amountToTake);
     }
 
-    public float getAmountToTake() {
-        return amountToTake;
+    public PetrolStation(float amountToTake, int requestNumber, Semaphore semaphore) {
+        this.amountToTake = amountToTake;
+        this.consumerNumber = requestNumber;
+        this.semaphore = semaphore;
     }
-
-    public int getConsumerId() {
-        return consumerId;
-    }
-
-    public Semaphore getSemaphore() {
-        return semaphore;
-    }
-
 }
+
