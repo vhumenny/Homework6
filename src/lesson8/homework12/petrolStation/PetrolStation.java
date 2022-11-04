@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PetrolStation implements Runnable {
-    private static AtomicInteger amount = new AtomicInteger((int) 30f);
+    private static AtomicInteger amount = new AtomicInteger((int) 100f);
     private float amountToTake;
     private int consumerNumber;
     private Semaphore semaphore;
@@ -22,8 +22,8 @@ public class PetrolStation implements Runnable {
                             + ". There's only " + amount.intValue() + " left.");
                 } else {
                     System.out.println("Consumer " + consumerNumber + " started refueling");
-                    amount.getAndAdd((int) -amountToTake);
                     Thread.sleep(random.nextInt(3000, 10000));
+                    amount.getAndAdd((int) -amountToTake);
                     System.out.println("Consumer " + consumerNumber + " finished refueling");
                 }
             }
