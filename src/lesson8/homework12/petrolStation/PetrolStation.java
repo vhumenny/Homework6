@@ -39,11 +39,11 @@ public class PetrolStation implements Runnable {
         doRefuel(this.amountToTake, this.amount);
     }
 
-    public PetrolStation(float amountToTake, int consumerNumber, Semaphore semaphore) {
+    public PetrolStation(float amountToTake, int consumerNumber, Semaphore semaphore, AtomicInteger amount) {
         this.amountToTake = amountToTake;
         this.consumerNumber = consumerNumber;
         this.semaphore = semaphore;
-        this.amount = new AtomicInteger((int) 50f);
+        this.amount = amount;
     }
 }
 
