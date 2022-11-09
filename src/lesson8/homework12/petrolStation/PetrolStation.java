@@ -5,13 +5,13 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PetrolStation implements Runnable {
-    private static AtomicInteger amount = new AtomicInteger((int) 100f);
+    private AtomicInteger amount;
     private float amountToTake;
     private int consumerNumber;
     private Semaphore semaphore;
     private static final Object lock = new Object();
 
-    public void doRefuel(float amountToTake) {
+    public void doRefuel(float amountToTake, AtomicInteger amount) {
         Random random = new Random();
         try {
             semaphore.acquire(1);
@@ -36,13 +36,14 @@ public class PetrolStation implements Runnable {
 
     @Override
     public void run() {
-        doRefuel(this.amountToTake);
+        doRefuel(this.amountToTake, this.amount);
     }
 
     public PetrolStation(float amountToTake, int consumerNumber, Semaphore semaphore) {
         this.amountToTake = amountToTake;
         this.consumerNumber = consumerNumber;
         this.semaphore = semaphore;
+        this.amount = new AtomicInteger((int) 50f);
     }
 }
 
