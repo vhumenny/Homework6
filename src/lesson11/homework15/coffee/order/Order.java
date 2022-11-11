@@ -16,4 +16,12 @@ public class Order {
     public String getClientName() {
         return clientName;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderNumber=" + orderNumber +
+                ", clientName='" + clientName + '\'' +
+                '}';
+    }
 }
