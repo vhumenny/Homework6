@@ -11,14 +11,14 @@ public class Main {
 
         TelephoneBook telephoneBook = new TelephoneBook(new HashMap<>());
 
-        telephoneBook.add(telephoneBook, entry1.getName(),entry1.getTelephone());
-        telephoneBook.add(telephoneBook, entry2.getName(),entry2.getTelephone());
-        telephoneBook.add(telephoneBook, entry3.getName(),entry3.getTelephone());
-        telephoneBook.add(telephoneBook, entry4.getName(),entry4.getTelephone());
+        telephoneBook.add(telephoneBook, entry1.getName(), entry1.getTelephone());
+        telephoneBook.add(telephoneBook, entry2.getName(), entry2.getTelephone());
+        telephoneBook.add(telephoneBook, entry3.getName(), entry3.getTelephone());
+        telephoneBook.add(telephoneBook, entry4.getName(), entry4.getTelephone());
 
         System.out.println(telephoneBook.getEntries());
-        System.out.println(telephoneBook.find(telephoneBook,entry4.getName()));
-        System.out.println(telephoneBook.findAll(telephoneBook,entry2.getName()));
+        System.out.println(telephoneBook.find(telephoneBook, entry4.getName()));
+        System.out.println(telephoneBook.findAll(telephoneBook, entry2.getName()));
 
     }
 }

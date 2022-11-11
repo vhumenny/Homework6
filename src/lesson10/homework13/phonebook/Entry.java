@@ -24,4 +24,12 @@ public class Entry {
     public void setTelephone(Integer telephone) {
         this.telephone = telephone;
     }
+
+    @Override
+    public String toString() {
+        return "Entry{" +
+                "name='" + name + '\'' +
+                ", telephone=" + telephone +
+                '}';
+    }
 }
