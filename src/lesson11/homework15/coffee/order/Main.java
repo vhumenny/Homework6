@@ -13,9 +13,7 @@ public class Main {
         System.out.println(coffeeOrderBoard.getListOfOrders());
         System.out.println(coffeeOrderBoard.deliverClosest(coffeeOrderBoard));
         System.out.println(coffeeOrderBoard.getListOfOrders());
-        System.out.println(coffeeOrderBoard.deliver(coffeeOrderBoard,4));
+        System.out.println(coffeeOrderBoard.deliver(coffeeOrderBoard, 4));
         coffeeOrderBoard.draw(coffeeOrderBoard);
-
-
     }
 }

@@ -45,13 +45,11 @@ public class CoffeeOrderBoard {
         Collections.sort(orderNumbers);
         System.out.println("=======================\n Num   |   Name");
         for (int i = 0; i < orderNumbers.size(); i++) {
-            System.out.println("  "+orderNumbers.get(i) + "    |   " + coffeeOrderBoard.getListOfOrders().get(orderNumbers.get(i)));
+            System.out.println("  " + orderNumbers.get(i) + "    |   " + coffeeOrderBoard.getListOfOrders().get(orderNumbers.get(i)));
         }
     }
 
     public HashMap<Integer, String> getListOfOrders() {
         return listOfOrders;
     }
-
-
 }
