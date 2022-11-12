@@ -1,7 +1,6 @@
 package lesson10.homework13.list;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 public class OccurrencesMethods {
     private String name;
@@ -18,18 +17,10 @@ public class OccurrencesMethods {
     }
 
     public void calcOccurrence(ArrayList<String> arrayList) {
-        ArrayList<String> result = new ArrayList<>();
-        for (int i = 0; i < arrayList.size(); i++) {
-            int counter = 0;
-            for (int j = 0; j < arrayList.size(); j++) {
-                if (arrayList.get(i).equals(arrayList.get(j))) {
-                    counter++;
-                }
-                if (j == arrayList.size() - 1 && !result.contains(arrayList.get(i) + ":" + counter)) {
-                    result.add(arrayList.get(i) + ":" + counter);
-                    System.out.println(arrayList.get(i) + ":" + counter);
-                }
-            }
+        ArrayList<String> result = new ArrayList<>(new LinkedHashSet<>(arrayList));
+        for (String s : result) {
+            int counter = Collections.frequency(arrayList, s);
+            System.out.println(s + ":" + counter);
         }
     }
 
