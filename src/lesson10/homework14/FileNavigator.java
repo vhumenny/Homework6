@@ -7,15 +7,14 @@ public class FileNavigator {
 
     public void add(String filePath, FileData fileData) {
         if (!fileData.getFilePath().equals(filePath)) {
-            throw new IllegalArgumentException("Path-Key and filePath don't match!");
+            throw new IllegalArgumentException("Path-Key and filePath don't match for " + fileData.getFileName());
+        }
+        if (filesList.containsKey(filePath)) {
+            filesList.get(filePath).add(fileData);
         } else {
-            if (filesList.containsKey(filePath)) {
-                filesList.get(filePath).add(fileData);
-            } else {
-                ArrayList<FileData> newList = new ArrayList<>();
-                newList.add(fileData);
-                filesList.put(filePath, newList);
-            }
+            ArrayList<FileData> newList = new ArrayList<>();
+            newList.add(fileData);
+            filesList.put(filePath, newList);
         }
     }
 
