@@ -14,18 +14,18 @@ public class Main {
         FileData fileData5 = new FileData("file5.txt", (byte) 50,
                 "C:\\Users\\Admin\\Desktop\\A");
 
-        fileNavigator.add("C:\\Users\\Admin\\dev\\Homework6", fileData1, fileNavigator.getFilesList());
-        fileNavigator.add("C:\\Users\\Admin\\dev\\Homework6", fileData2, fileNavigator.getFilesList());
-        fileNavigator.add("C:\\Users\\Admin\\dev\\Homework6", fileData3, fileNavigator.getFilesList());
-        fileNavigator.add("C:\\Users\\Admin\\Desktop\\A", fileData4, fileNavigator.getFilesList());
-        fileNavigator.add("C:\\Users\\Admin\\Desktop\\A", fileData5, fileNavigator.getFilesList());
+        fileNavigator.add("C:\\Users\\Admin\\dev\\Homework6", fileData1);
+        fileNavigator.add("C:\\Users\\Admin\\dev\\Homework6", fileData2);
+        fileNavigator.add("C:\\Users\\Admin\\dev\\Homework6", fileData3);
+        fileNavigator.add("C:\\Users\\Admin\\Desktop\\A", fileData4);
+        fileNavigator.add("C:\\Users\\Admin\\Desktop\\A", fileData5);
         System.out.println("Result after using method add = " + fileNavigator.getFilesList());
         System.out.println("Result after using method find = " +
-                fileNavigator.find("C:\\Users\\Admin\\dev\\Homework6", fileNavigator));
+                fileNavigator.find("C:\\Users\\Admin\\dev\\Homework6"));
         System.out.println("Result after using method filterBySize = " +
-                fileNavigator.filterBySize((byte) 30, fileNavigator));
-        fileNavigator.remove("C:\\Users\\Admin\\dev\\Homework6", fileNavigator);
+                fileNavigator.filterBySize((byte) 30));
+        fileNavigator.remove("C:\\Users\\Admin\\dev\\Homework6");
         System.out.println("Result after using method remove = " + fileNavigator.getFilesList());
-        System.out.println("Result after using method sortBySize = " + fileNavigator.sortBySize(fileNavigator));
+        System.out.println("Result after using method sortBySize = " + fileNavigator.sortBySize());
     }
 }
