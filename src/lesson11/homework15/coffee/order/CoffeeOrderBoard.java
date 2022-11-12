@@ -3,7 +3,7 @@ package lesson11.homework15.coffee.order;
 import java.util.*;
 
 public class CoffeeOrderBoard {
-    private HashMap<Integer, String> listOfOrders = new HashMap<>();
+    private TreeMap<Integer, String> listOfOrders = new TreeMap<>();
 
     public void add(CoffeeOrderBoard coffeeOrderBoard, String name) {
         if (coffeeOrderBoard.getListOfOrders().isEmpty()) {
@@ -14,7 +14,6 @@ public class CoffeeOrderBoard {
             for (Map.Entry<Integer, String> entry : coffeeOrderBoard.getListOfOrders().entrySet()) {
                 orderNumbers.add(entry.getKey());
             }
-            Collections.sort(orderNumbers);
             coffeeOrderBoard.getListOfOrders().put(orderNumbers.getLast() + 1, name);
         }
     }
@@ -24,7 +23,6 @@ public class CoffeeOrderBoard {
         for (Map.Entry<Integer, String> entry : coffeeOrderBoard.getListOfOrders().entrySet()) {
             orderNumbers.add(entry.getKey());
         }
-        Collections.sort(orderNumbers);
         Order order = new Order(orderNumbers.getFirst(),
                 coffeeOrderBoard.getListOfOrders().get(orderNumbers.getFirst()));
         coffeeOrderBoard.getListOfOrders().remove(orderNumbers.getFirst());
@@ -42,14 +40,13 @@ public class CoffeeOrderBoard {
         for (Map.Entry<Integer, String> entry : coffeeOrderBoard.getListOfOrders().entrySet()) {
             orderNumbers.add(entry.getKey());
         }
-        Collections.sort(orderNumbers);
         System.out.println("=======================\n Num   |   Name");
         for (int i = 0; i < orderNumbers.size(); i++) {
             System.out.println("  " + orderNumbers.get(i) + "    |   " + coffeeOrderBoard.getListOfOrders().get(orderNumbers.get(i)));
         }
     }
 
-    public HashMap<Integer, String> getListOfOrders() {
+    public TreeMap<Integer, String> getListOfOrders() {
         return listOfOrders;
     }
 }
