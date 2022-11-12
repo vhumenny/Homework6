@@ -26,13 +26,27 @@ public class CoffeeOrderBoard {
         }
         Collections.sort(orderNumbers);
         Order order = new Order(orderNumbers.getFirst(),
-                coffeeOrderBoard.getListOfOrders().get(coffeeOrderBoard.getListOfOrders()));
+                coffeeOrderBoard.getListOfOrders().get(orderNumbers.getFirst()));
         coffeeOrderBoard.getListOfOrders().remove(orderNumbers.getFirst());
         return order;
     }
 
-    public void deliver(CoffeeOrderBoard coffeeOrderBoard, Integer number) {
+    public Order deliver(CoffeeOrderBoard coffeeOrderBoard, Integer number) {
+        Order order = new Order(number, coffeeOrderBoard.getListOfOrders().get(number));
+        coffeeOrderBoard.getListOfOrders().remove(number);
+        return order;
+    }
 
+    public void draw(CoffeeOrderBoard coffeeOrderBoard) {
+        LinkedList<Integer> orderNumbers = new LinkedList<>();
+        for (Map.Entry<Integer, String> entry : coffeeOrderBoard.getListOfOrders().entrySet()) {
+            orderNumbers.add(entry.getKey());
+        }
+        Collections.sort(orderNumbers);
+        System.out.println("=======================\n Num   |   Name");
+        for (int i = 0; i < orderNumbers.size(); i++) {
+            System.out.println("  "+orderNumbers.get(i) + "    |   " + coffeeOrderBoard.getListOfOrders().get(orderNumbers.get(i)));
+        }
     }
 
     public HashMap<Integer, String> getListOfOrders() {
