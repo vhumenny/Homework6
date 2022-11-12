@@ -6,13 +6,13 @@ public class CoffeeOrderBoard {
     private TreeMap<Integer, String> listOfOrders = new TreeMap<>();
 
     public void add(String name) {
+        Order order;
         if (getListOfOrders().isEmpty()) {
-            Order order = new Order(1, name);
-            getListOfOrders().put(order.getOrderNumber(), order.getClientName());
+            order = new Order(1, name);
         } else {
-            Order order = new Order(getListOfOrders().lastKey() + 1, name);
-            getListOfOrders().put(order.getOrderNumber(), order.getClientName());
+            order = new Order(getListOfOrders().lastKey() + 1, name);
         }
+        getListOfOrders().put(order.getOrderNumber(), order.getClientName());
     }
 
     public Order deliver() {
