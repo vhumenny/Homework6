@@ -10,9 +10,9 @@ public class TelephoneBook {
 
     private HashMap<String, ArrayList<Integer>> entries;
 
-    public void add(TelephoneBook telephoneBook, String name, Integer telephone) {
-        if (telephoneBook.getEntries().containsKey(name)) {
-            telephoneBook.getEntries().get(name).add(telephone);
+    public void add(String name, Integer telephone) {
+        if (getEntries().containsKey(name)) {
+            getEntries().get(name).add(telephone);
         } else {
             ArrayList<Integer> newList = new ArrayList<>();
             newList.add(telephone);
@@ -20,9 +20,9 @@ public class TelephoneBook {
         }
     }
 
-    public Entry find(TelephoneBook telephoneBook, String name) {
+    public Entry find(String name) {
         Entry newEntry = null;
-        for (Map.Entry<String, ArrayList<Integer>> entry : telephoneBook.getEntries().entrySet()) {
+        for (Map.Entry<String, ArrayList<Integer>> entry : getEntries().entrySet()) {
             if (entry.getKey().equals(name)) {
                 newEntry = new Entry(entry.getKey(), entry.getValue().get(0));
                 break;
@@ -31,9 +31,9 @@ public class TelephoneBook {
         return newEntry;
     }
 
-    public String findAll(TelephoneBook telephoneBook, String name) {
+    public String findAll(String name) {
         String result = null;
-        for (Map.Entry<String, ArrayList<Integer>> entry : telephoneBook.getEntries().entrySet()) {
+        for (Map.Entry<String, ArrayList<Integer>> entry : getEntries().entrySet()) {
             if (entry.getKey().equals(name)) {
                 for (int i = 0; i < entry.getValue().size(); i++) {
                     result = "Name: " + entry.getKey() + ": Telephone: " + entry.getValue() + "\n";

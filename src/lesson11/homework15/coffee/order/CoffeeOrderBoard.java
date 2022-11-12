@@ -4,15 +4,12 @@ import java.util.*;
 
 public class CoffeeOrderBoard {
     private TreeMap<Integer, String> listOfOrders = new TreeMap<>();
+    private int lastOrderNumber = 1;
 
     public void add(String name) {
-        Order order;
-        if (getListOfOrders().isEmpty()) {
-            order = new Order(1, name);
-        } else {
-            order = new Order(getListOfOrders().lastKey() + 1, name);
-        }
+        Order order = new Order(getLastOrderNumber(), name);
         getListOfOrders().put(order.getOrderNumber(), order.getClientName());
+        setLastOrderNumber(getLastOrderNumber() + 1);
     }
 
     public Order deliver() {
@@ -45,5 +42,13 @@ public class CoffeeOrderBoard {
 
     public TreeMap<Integer, String> getListOfOrders() {
         return listOfOrders;
+    }
+
+    public int getLastOrderNumber() {
+        return lastOrderNumber;
+    }
+
+    public void setLastOrderNumber(int lastOrderNumber) {
+        this.lastOrderNumber = lastOrderNumber;
     }
 }
