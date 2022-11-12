@@ -5,44 +5,41 @@ import java.util.*;
 public class CoffeeOrderBoard {
     private TreeMap<Integer, String> listOfOrders = new TreeMap<>();
 
-    public void add(CoffeeOrderBoard coffeeOrderBoard, String name) {
-        if (coffeeOrderBoard.getListOfOrders().isEmpty()) {
+    public void add(String name) {
+        if (getListOfOrders().isEmpty()) {
             Order order = new Order(1, name);
-            coffeeOrderBoard.getListOfOrders().put(order.getOrderNumber(), order.getClientName());
+            getListOfOrders().put(order.getOrderNumber(), order.getClientName());
         } else {
-            LinkedList<Integer> orderNumbers = new LinkedList<>();
-            for (Map.Entry<Integer, String> entry : coffeeOrderBoard.getListOfOrders().entrySet()) {
-                orderNumbers.add(entry.getKey());
-            }
-            coffeeOrderBoard.getListOfOrders().put(orderNumbers.getLast() + 1, name);
+            Order order = new Order(getListOfOrders().lastKey() + 1, name);
+            getListOfOrders().put(order.getOrderNumber(), order.getClientName());
         }
     }
 
-    public Order deliverClosest(CoffeeOrderBoard coffeeOrderBoard) {
+    public Order deliver() {
         LinkedList<Integer> orderNumbers = new LinkedList<>();
-        for (Map.Entry<Integer, String> entry : coffeeOrderBoard.getListOfOrders().entrySet()) {
+        for (Map.Entry<Integer, String> entry : getListOfOrders().entrySet()) {
             orderNumbers.add(entry.getKey());
         }
         Order order = new Order(orderNumbers.getFirst(),
-                coffeeOrderBoard.getListOfOrders().get(orderNumbers.getFirst()));
-        coffeeOrderBoard.getListOfOrders().remove(orderNumbers.getFirst());
+                getListOfOrders().get(orderNumbers.getFirst()));
+        getListOfOrders().remove(orderNumbers.getFirst());
         return order;
     }
 
-    public Order deliver(CoffeeOrderBoard coffeeOrderBoard, Integer number) {
-        Order order = new Order(number, coffeeOrderBoard.getListOfOrders().get(number));
-        coffeeOrderBoard.getListOfOrders().remove(number);
+    public Order deliver(Integer number) {
+        Order order = new Order(number, getListOfOrders().get(number));
+        getListOfOrders().remove(number);
         return order;
     }
 
-    public void draw(CoffeeOrderBoard coffeeOrderBoard) {
+    public void draw() {
         LinkedList<Integer> orderNumbers = new LinkedList<>();
-        for (Map.Entry<Integer, String> entry : coffeeOrderBoard.getListOfOrders().entrySet()) {
+        for (Map.Entry<Integer, String> entry : getListOfOrders().entrySet()) {
             orderNumbers.add(entry.getKey());
         }
         System.out.println("=======================\n Num   |   Name");
         for (int i = 0; i < orderNumbers.size(); i++) {
-            System.out.println("  " + orderNumbers.get(i) + "    |   " + coffeeOrderBoard.getListOfOrders().get(orderNumbers.get(i)));
+            System.out.println("  " + orderNumbers.get(i) + "    |   " + getListOfOrders().get(orderNumbers.get(i)));
         }
     }
 
