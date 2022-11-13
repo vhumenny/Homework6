@@ -36,9 +36,9 @@ public class Main {
         numbsArrayList.add(3);
         numbsArrayList.add(3);
 
-//        occurrencesMethods.countOccurrence(arrayList, newString);
-//        System.out.println(arrayListMethods.toList(array));
-//        System.out.println(arrayListMethods.findUnique(numbsArrayList));
+        occurrencesMethods.countOccurrence(arrayList, newString);
+        System.out.println(arrayListMethods.toList(array));
+        System.out.println(arrayListMethods.findUnique(numbsArrayList));
         occurrencesMethods.calcOccurrence(arrayList);
         System.out.println(occurrencesMethods.findOccurrence(arrayList));
     }

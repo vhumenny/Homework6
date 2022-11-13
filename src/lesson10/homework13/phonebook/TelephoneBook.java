@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-
 public class TelephoneBook {
 
     private HashMap<String, ArrayList<Integer>> entries;
@@ -35,9 +34,7 @@ public class TelephoneBook {
         String result = null;
         for (Map.Entry<String, ArrayList<Integer>> entry : getEntries().entrySet()) {
             if (entry.getKey().equals(name)) {
-                for (int i = 0; i < entry.getValue().size(); i++) {
-                    result = "Name: " + entry.getKey() + ": Telephone: " + entry.getValue() + "\n";
-                }
+                result = "Name: " + entry.getKey() + ": Telephones: " + entry.getValue() + "\n";
             }
         }
         return result;

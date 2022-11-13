@@ -25,19 +25,13 @@ public class OccurrencesMethods {
     }
 
     public ArrayList<OccurrencesMethods> findOccurrence(ArrayList<String> arrayList) {
-        ArrayList<OccurrencesMethods> result = new ArrayList<>();
-        for (int i = 0; i < arrayList.size(); i++) {
-            int counter = 0;
-            for (int j = 0; j < arrayList.size(); j++) {
-                if (arrayList.get(i).equals(arrayList.get(j))) {
-                    counter++;
-                }
-                if (j == arrayList.size() - 1 && !result.contains(new OccurrencesMethods(arrayList.get(i), counter))) {
-                    result.add(new OccurrencesMethods(arrayList.get(i), counter));
-                }
-            }
+        ArrayList<String> result = new ArrayList<>(new LinkedHashSet<>(arrayList));
+        ArrayList<OccurrencesMethods> occurrencesMethods = new ArrayList<>();
+        for (String s : result) {
+            int counter = Collections.frequency(arrayList, s);
+            occurrencesMethods.add(new OccurrencesMethods(s, counter));
         }
-        return result;
+        return occurrencesMethods;
     }
 
     public OccurrencesMethods(String name, Integer occurrence) {
