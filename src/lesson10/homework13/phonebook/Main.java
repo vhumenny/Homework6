@@ -15,7 +15,7 @@ public class Main {
         telephoneBook.add(entry3.getName(), entry3.getTelephone());
         telephoneBook.add(entry4.getName(), entry4.getTelephone());
         System.out.println(telephoneBook.getEntries());
-        System.out.println(telephoneBook.find(entry4.getName()));
+        System.out.println(telephoneBook.find("Vladimir"));
         System.out.println(telephoneBook.findAll(entry2.getName()));
     }
 }

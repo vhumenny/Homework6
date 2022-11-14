@@ -2,7 +2,6 @@ package lesson10.homework13.phonebook;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class TelephoneBook {
@@ -21,23 +20,21 @@ public class TelephoneBook {
 
     public Entry find(String name) {
         Entry newEntry = null;
-        for (Map.Entry<String, ArrayList<Integer>> entry : getEntries().entrySet()) {
-            if (entry.getKey().equals(name)) {
-                newEntry = new Entry(entry.getKey(), entry.getValue().get(0));
-                break;
-            }
+        if (getEntries().containsKey(name)) {
+            newEntry = new Entry(name, getEntries().get(name).get(0));
         }
         return newEntry;
     }
 
-    public String findAll(String name) {
-        String result = null;
-        for (Map.Entry<String, ArrayList<Integer>> entry : getEntries().entrySet()) {
-            if (entry.getKey().equals(name)) {
-                result = "Name: " + entry.getKey() + ": Telephones: " + entry.getValue() + "\n";
+
+    public ArrayList<Entry> findAll(String name) {
+        ArrayList<Entry> newListOfEntries = new ArrayList<>();
+        if (getEntries().containsKey(name)) {
+            for (int i = 0; i < getEntries().get(name).size(); i++) {
+                newListOfEntries.add(new Entry(name, getEntries().get(name).get(i)));
             }
         }
-        return result;
+        return newListOfEntries;
     }
 
     public TelephoneBook(HashMap<String, ArrayList<Integer>> entries) {
@@ -46,10 +43,6 @@ public class TelephoneBook {
 
     public HashMap<String, ArrayList<Integer>> getEntries() {
         return entries;
-    }
-
-    public void setEntries(HashMap<String, ArrayList<Integer>> entries) {
-        this.entries = entries;
     }
 
     @Override
