@@ -1,5 +1,8 @@
 package lesson11.homework15.coffee.order;
 
+import java.lang.reflect.Array;
+import java.util.Objects;
+
 public class Order {
     private int orderNumber;
     private String clientName;
@@ -23,5 +26,18 @@ public class Order {
                 "orderNumber=" + orderNumber +
                 ", clientName='" + clientName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return orderNumber == order.orderNumber && Objects.equals(clientName, order.clientName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderNumber, clientName);
     }
 }

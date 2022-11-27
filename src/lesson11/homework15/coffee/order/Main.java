@@ -9,11 +9,10 @@ public class Main {
         coffeeOrderBoard.add("Artem");
         coffeeOrderBoard.add("Dima");
         coffeeOrderBoard.add("Vasiliy");
-
-        System.out.println(coffeeOrderBoard.getListOfOrders());
+        System.out.println(coffeeOrderBoard.getQueueOfOrders());
         System.out.println(coffeeOrderBoard.deliver());
-        System.out.println(coffeeOrderBoard.getListOfOrders());
-        System.out.println(coffeeOrderBoard.deliver(4));
+        System.out.println(coffeeOrderBoard.deliver(3));
         coffeeOrderBoard.draw();
+        System.out.println(coffeeOrderBoard.getQueueOfOrders());
     }
 }

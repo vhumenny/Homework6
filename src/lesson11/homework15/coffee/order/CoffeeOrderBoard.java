@@ -3,52 +3,39 @@ package lesson11.homework15.coffee.order;
 import java.util.*;
 
 public class CoffeeOrderBoard {
-    private TreeMap<Integer, String> listOfOrders = new TreeMap<>();
+    private Queue<Order> queueOfOrders = new LinkedList<>();
     private int lastOrderNumber = 1;
 
     public void add(String name) {
-        Order order = new Order(getLastOrderNumber(), name);
-        getListOfOrders().put(order.getOrderNumber(), order.getClientName());
-        setLastOrderNumber(getLastOrderNumber() + 1);
+        queueOfOrders.add(new Order(lastOrderNumber, name));
+        lastOrderNumber++;
     }
 
     public Order deliver() {
-        LinkedList<Integer> orderNumbers = new LinkedList<>();
-        for (Map.Entry<Integer, String> entry : getListOfOrders().entrySet()) {
-            orderNumbers.add(entry.getKey());
-        }
-        Order order = new Order(orderNumbers.getFirst(),
-                getListOfOrders().get(orderNumbers.getFirst()));
-        getListOfOrders().remove(orderNumbers.getFirst());
-        return order;
+        return queueOfOrders.poll();
     }
 
     public Order deliver(Integer number) {
-        Order order = new Order(number, getListOfOrders().get(number));
-        getListOfOrders().remove(number);
-        return order;
+        Order order;
+        for (Order o : queueOfOrders) {
+            if (o.getOrderNumber() == number) {
+                order = o;
+                queueOfOrders.remove(o);
+                return order;
+            }
+        }
+        return null;
     }
 
     public void draw() {
-        LinkedList<Integer> orderNumbers = new LinkedList<>();
-        for (Map.Entry<Integer, String> entry : getListOfOrders().entrySet()) {
-            orderNumbers.add(entry.getKey());
-        }
         System.out.println("=======================\n Num   |   Name");
-        for (int i = 0; i < orderNumbers.size(); i++) {
-            System.out.println("  " + orderNumbers.get(i) + "    |   " + getListOfOrders().get(orderNumbers.get(i)));
+        for (Order order : queueOfOrders) {
+            System.out.println("  " + order.getOrderNumber() + "    |   " +
+                    order.getClientName());
         }
     }
 
-    public TreeMap<Integer, String> getListOfOrders() {
-        return listOfOrders;
-    }
-
-    public int getLastOrderNumber() {
-        return lastOrderNumber;
-    }
-
-    public void setLastOrderNumber(int lastOrderNumber) {
-        this.lastOrderNumber = lastOrderNumber;
+    public Queue<Order> getQueueOfOrders() {
+        return queueOfOrders;
     }
 }
