@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Main {
     private static Map<Character, Integer> map = new HashMap<>();
+
     public static void main(String[] args) {
         map.put('I', 1);
         map.put('V', 5);
@@ -17,7 +18,6 @@ public class Main {
         map.put('C', 100);
         map.put('D', 500);
         map.put('M', 1000);
-
         romanToInt("XXX");
     }
 
@@ -25,7 +25,6 @@ public class Main {
         int result = 0;
         for (int i = 0; i < s.length(); i++) {
             int currentChar = map.get(s.charAt(i));
-
             if (i + 1 < s.length()) {
                 int nextChar = map.get(s.charAt(i + 1));
                 if (currentChar >= nextChar) {
@@ -38,8 +37,6 @@ public class Main {
         }
         return result;
     }
-
-
 }
 
 class MainTest {
