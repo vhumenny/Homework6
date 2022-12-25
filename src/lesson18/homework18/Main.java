@@ -10,47 +10,28 @@ public class Main {
         Box<Orange> orangeBox = new Box<>();
         Box<Apple> appleBox = new Box<>();
         Box<Orange> orangeBox2 = new Box<>();
-        Set<Apple> apples = new HashSet<>();
+
+        List<Apple> apples = new LinkedList<>();
         apples.add(new Apple());
         apples.add(new Apple());
         apples.add(new Apple());
 
         orangeBox.addFruit(new Orange());
+        orangeBox.addFruit(new Orange());
         orangeBox2.addFruit(new Orange());
-        appleBox.addFruitsSet(apples);
+        appleBox.addFruitsList(apples);
 
         System.out.println(orangeBox);
-        System.out.println(orangeBox.getWeight(orangeBox.getBoxOfFruits().get(0)));
+        System.out.println(orangeBox.getWeight());
         System.out.println(appleBox);
-        System.out.println(orangeBox.compare(appleBox, orangeBox.getBoxOfFruits().get(0)));
+        System.out.println(orangeBox.compare(appleBox));
         orangeBox.merge(orangeBox2);
         System.out.println(orangeBox);
+        System.out.println(orangeBox2.getBoxOfFruits().isEmpty());
     }
 
     public static List<?> toList(Object[] array) {
         return Arrays.stream(array).toList();
-    }
-}
-
-interface Fruit {
-    float weight = 0;
-
-    default float getWeight() {
-        return weight;
-    }
-}
-
-class Orange implements Fruit {
-
-    public float getWeight() {
-        return 1.0f;
-    }
-}
-
-class Apple implements Fruit {
-
-    public float getWeight() {
-        return 1.5f;
     }
 }
 

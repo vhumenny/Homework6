@@ -2,29 +2,30 @@ package lesson18.homework18;
 
 import java.util.*;
 
-class Box<T> {
+class Box<T extends Fruit> {
     private final List<T> boxOfFruits = new LinkedList<>();
 
     public void addFruit(T fruit) {
         boxOfFruits.add(fruit);
     }
 
-    public void addFruitsSet(Set<T> fruits) {
+    public void addFruitsList(List<T> fruits) {
         boxOfFruits.addAll(fruits);
     }
 
-    public float getWeight(Fruit fruit) {
-        return (float) boxOfFruits.size() * fruit.getWeight();
+    public float getWeight() {
+        return (float) boxOfFruits.size() * boxOfFruits.get(0).getWeight();
     }
 
-    public boolean compare(Box<? extends Fruit> otherBox, Fruit fruit) {
-        float thisBoxWeight = this.boxOfFruits.size() * fruit.getWeight();
-        float otherBoxWeight = otherBox.getWeight(otherBox.getBoxOfFruits().get(0));
+    public boolean compare(Box<? extends Fruit> otherBox) {
+        float thisBoxWeight = this.boxOfFruits.size() * boxOfFruits.get(0).getWeight();
+        float otherBoxWeight = otherBox.getWeight();
         return thisBoxWeight == otherBoxWeight;
     }
 
     public void merge(Box<T> otherBox) {
         this.boxOfFruits.addAll(otherBox.boxOfFruits);
+        otherBox.boxOfFruits.clear();
     }
 
     public List<T> getBoxOfFruits() {
