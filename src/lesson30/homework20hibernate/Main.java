@@ -1,7 +1,7 @@
-package lesson30.homework20;
+package lesson30.homework20hibernate;
 
-import lesson30.homework20.entity.Student;
-import lesson30.homework20.service.StudentService;
+import lesson30.homework20hibernate.entity.Student;
+import lesson30.homework20hibernate.service.StudentService;
 
 public class Main {
     public static void main(String[] args) {

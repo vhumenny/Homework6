@@ -1,6 +1,6 @@
-package lesson30.homework20.dao;
+package lesson30.homework20hibernate.dao;
 
-import lesson30.homework20.entity.Student;
+import lesson30.homework20hibernate.entity.Student;
 
 import java.util.List;
 

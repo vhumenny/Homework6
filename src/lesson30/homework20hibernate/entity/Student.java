@@ -1,4 +1,4 @@
-package lesson30.homework20.entity;
+package lesson30.homework20hibernate.entity;
 
 import lombok.*;
 

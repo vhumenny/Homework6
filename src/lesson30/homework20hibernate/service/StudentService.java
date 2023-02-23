@@ -1,8 +1,8 @@
-package lesson30.homework20.service;
+package lesson30.homework20hibernate.service;
 
-import lesson30.homework20.dao.DAO;
-import lesson30.homework20.dao.DAOImpl;
-import lesson30.homework20.entity.Student;
+import lesson30.homework20hibernate.dao.DAO;
+import lesson30.homework20hibernate.dao.DAOImpl;
+import lesson30.homework20hibernate.entity.Student;
 
 import java.util.List;
 

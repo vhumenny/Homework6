@@ -1,6 +1,6 @@
-package lesson30.homework20.util;
+package lesson30.homework20hibernate.util;
 
-import lesson30.homework20.entity.Student;
+import lesson30.homework20hibernate.entity.Student;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
