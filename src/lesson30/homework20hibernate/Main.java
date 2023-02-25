@@ -6,11 +6,14 @@ import lesson30.homework20hibernate.service.StudentService;
 public class Main {
     public static void main(String[] args) {
         StudentService service = new StudentService();
-        service.addStudent(new Student(1L,"Alex","alex@gmail.com"));
-        service.addStudent(new Student(2L,"Artem","artem@gmail.com"));
-        service.addStudent(new Student(3L,"Vladimir","vladimir@gmail.com"));
+        Student student = new Student("Alex","alex@gmail.com");
+        service.addStudent(student);
+        service.addStudent(new Student("Artem","artem@gmail.com"));
+        service.addStudent(new Student("Vladimir","vladimir@gmail.com"));
         service.deleteStudent(3L);
-        service.updateStudent(new Student(1L,"Anna","anna@gmail.com"));
+        student.setName("Anna");
+        student.setEmail("anna@gmail.com");
+        service.updateStudent(student);
         System.out.println(service.getAllStudents());
         System.out.println(service.getStudent(2L));
     }
