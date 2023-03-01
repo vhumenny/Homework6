@@ -1,6 +1,6 @@
 package lesson33.homework28.configuration;
 
-import lesson33.homework28.Cart.Cart;
+import lesson33.homework28.cart.Cart;
 import lesson33.homework28.storage.ProductRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

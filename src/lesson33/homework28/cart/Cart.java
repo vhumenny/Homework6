@@ -1,4 +1,4 @@
-package lesson33.homework28.Cart;
+package lesson33.homework28.cart;
 
 import lesson33.homework28.entity.Product;
 import lesson33.homework28.storage.ProductRepository;

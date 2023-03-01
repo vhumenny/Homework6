@@ -1,6 +1,6 @@
 package lesson33.homework28;
 
-import lesson33.homework28.Cart.Cart;
+import lesson33.homework28.cart.Cart;
 import lesson33.homework28.configuration.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,10 +14,11 @@ public class AppRunner {
         log.info("Starting app");
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         Cart cart = context.getBean("cartBean", Cart.class);
+
         while (true) {
             showListOfCommands();
-            String line = new Scanner(System.in).nextLine();
-            switch (line) {
+            String command = new Scanner(System.in).nextLine();
+            switch (command) {
                 case "add" -> {
                     int id = getId();
                     cart.addProduct(id);
@@ -30,7 +31,7 @@ public class AppRunner {
                 case "finish" -> log.info("Program shuts down.");
                 default -> log.warn("Wrong command entered. Please enter correct command!");
             }
-            if (line.equals("finish")) return;
+            if (command.equals("finish")) return;
         }
     }
 
