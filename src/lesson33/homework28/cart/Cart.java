@@ -32,8 +32,8 @@ public class Cart {
     }
 
     public void print() {
-        System.out.println(productRepository);
-        System.out.println(productList);
+        System.out.println("Cart: " + productRepository.getProductStorage());
+        System.out.println("Product repository: " + productList);
     }
 
 }
