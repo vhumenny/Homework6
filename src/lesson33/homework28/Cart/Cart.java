@@ -1,7 +1,7 @@
-package lesson33.homework29.Cart;
+package lesson33.homework28.Cart;
 
-import lesson33.homework29.entity.Product;
-import lesson33.homework29.storage.ProductRepository;
+import lesson33.homework28.entity.Product;
+import lesson33.homework28.storage.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;

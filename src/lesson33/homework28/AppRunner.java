@@ -1,7 +1,7 @@
-package lesson33.homework29;
+package lesson33.homework28;
 
-import lesson33.homework29.Cart.Cart;
-import lesson33.homework29.configuration.AppConfig;
+import lesson33.homework28.Cart.Cart;
+import lesson33.homework28.configuration.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

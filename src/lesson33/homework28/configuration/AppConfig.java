@@ -1,7 +1,7 @@
-package lesson33.homework29.configuration;
+package lesson33.homework28.configuration;
 
-import lesson33.homework29.Cart.Cart;
-import lesson33.homework29.storage.ProductRepository;
+import lesson33.homework28.Cart.Cart;
+import lesson33.homework28.storage.ProductRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

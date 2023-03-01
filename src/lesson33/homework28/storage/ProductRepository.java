@@ -1,6 +1,6 @@
-package lesson33.homework29.storage;
+package lesson33.homework28.storage;
 
-import lesson33.homework29.entity.Product;
+import lesson33.homework28.entity.Product;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
