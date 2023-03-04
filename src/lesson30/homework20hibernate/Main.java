@@ -8,13 +8,13 @@ public class Main {
         StudentService service = new StudentService();
         Student student = new Student("Alex","alex@gmail.com");
         service.addStudent(student);
-        service.addStudent(new Student("Artem","artem@gmail.com"));
-        service.addStudent(new Student("Vladimir","vladimir@gmail.com"));
-        service.deleteStudent(3L);
-        student.setName("Anna");
-        student.setEmail("anna@gmail.com");
-        service.updateStudent(student);
-        System.out.println(service.getAllStudents());
-        System.out.println(service.getStudent(2L));
+//        service.addStudent(new Student("Artem","artem@gmail.com"));
+//        service.addStudent(new Student("Vladimir","vladimir@gmail.com"));
+//        service.deleteStudent(3L);
+//        student.setName("Anna");
+//        student.setEmail("anna@gmail.com");
+//        service.updateStudent(student);
+//        System.out.println(service.getAllStudents());
+//        System.out.println(service.getStudent(2L));
     }
 }

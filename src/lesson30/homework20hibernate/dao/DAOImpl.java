@@ -15,9 +15,7 @@ public class DAOImpl implements DAO {
     @Override
     public void addStudent(Student student) {
         Session session = HibernateSession.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
         session.save(student);
-        transaction.commit();
         session.close();
     }
 
@@ -34,9 +32,7 @@ public class DAOImpl implements DAO {
     @Override
     public void updateStudent(Student student) {
         Session session = HibernateSession.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
         session.update(student);
-        transaction.commit();
         session.close();
     }
 
